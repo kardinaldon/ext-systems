@@ -60,7 +60,7 @@ insert into cr_person ( sur_name,given_name,patronymic,date_of_birth,passport_se
 values ('Васильева','Евгения','Павловна','2016-01-11',null ,null,null,'456123','2016-01-21');
 
 insert into cr_person ( sur_name,given_name,patronymic,date_of_birth,passport_seria,passport_number,passport_date,certificate_number,certificate_date)
-values ('Васильева','Александр','Павлович','2018-10-24',null ,null,null,'321654','2018-11-09');
+values ('Васильев','Александр','Павлович','2018-10-24',null ,null,null,'321654','2018-11-09');
 
 create table cr_address_person (
     person_address_id serial,
@@ -75,6 +75,26 @@ create table cr_address_person (
 );
 
 insert into cr_address_person (address_id,personId,start_date,end_date) values (1,1,'2014-10-12',null,false);
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,1,'2014-10-12',null);
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,1,'2016-02-05',null);
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,1,'2018-12-11',null);
+insert into cr_address_person (address_id,personId,start_date,end_date) values (1,2,'2014-10-12',null);
+insert into cr_address_person (address_id,personId,start_date,end_date) values (1,3,'2016-02-05',null);
+insert into cr_address_person (address_id,personId,start_date,end_date) values (1,4,'2018-12-11',null);
+
+select temporal from cr_address_person ap
+inner join cr_person p on p.person_id = ap.person_id
+inner join cr_address a on a.address_id = ap.address_id
+where
+p.sur_name = ? and p.given_name=? and p.patronymic=? and p.date_of_birth=?
+and a.street_code=? and a.building=? and a.extension=? and a.apartment=?;
+
+-- select temporal, upper(p.sur_name),upper('Васильев' collate "en_US.UTF-8") from cr_address_person ap
+--                        inner join cr_person p on p.person_id = ap.person_id
+--                        inner join cr_address a on a.address_id = ap.address_id
+-- where
+--   upper(p.sur_name collate "en_US.UTF-8") = upper('Васильев' collate "en_US.UTF-8")
+--   and upper(p.given_name collate "en_US.UTF-8")=upper('Павел' collate "en_US.UTF-8")
+--   and upper(p.patronymic collate "en_US.UTF-8")=upper('Николаевич' collate "en_US.UTF-8")
+--   and upper(p.date_of_birth collate "en_US.UTF-8")=upper('1995-03-18' collate "en_US.UTF-8")
+--   and a.street_code='1'
+--   and upper(a.building collate "en_US.UTF-8")=upper('10' collate "en_US.UTF-8")
+--   and upper(a.extension collate "en_US.UTF-8")=upper('2' collate "en_US.UTF-8")
+--   and upper(a.apartment collate "en_US.UTF-8")=upper('121' collate "en_US.UTF-8");
