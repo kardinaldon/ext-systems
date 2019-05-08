@@ -35,6 +35,7 @@ CREATE TABLE cr_address
 );
 
 insert into cr_address ( district_code,street_code,building,extension,apartment) values (1,1,'10','2','121');
+insert into cr_address ( district_code,street_code,building,extension,apartment) values (1,1,'274',null,null);
 
 create table cr_person (
     person_id SERIAL,
@@ -65,25 +66,26 @@ values ('Васильев','Александр','Павлович','2018-10-24',
 create table cr_address_person (
     person_address_id serial,
     address_id integer not null,
-    personId integer not null,
+    person_id integer not null,
     start_date date not null,
-    end_date integer,
+    end_date date,
     temporal boolean default false,
     PRIMARY KEY (person_address_id),
     FOREIGN KEY (address_id) REFERENCES cr_address(address_id) ON DELETE RESTRICT,
-    FOREIGN KEY (personId) REFERENCES cr_person(person_id) ON DELETE RESTRICT
+    FOREIGN KEY (person_id) REFERENCES cr_person(person_id) ON DELETE RESTRICT
 );
 
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,1,'2014-10-12',null,false);
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,2,'2014-10-12',null);
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,3,'2016-02-05',null);
-insert into cr_address_person (address_id,personId,start_date,end_date) values (1,4,'2018-12-11',null);
+insert into cr_address_person (address_id,person_id,start_date,end_date,temporal) values (1,1,'2014-10-12',null,false);
+insert into cr_address_person (address_id,person_id,start_date,end_date) values (1,2,'2014-10-12',null);
+insert into cr_address_person (address_id,person_id,start_date,end_date) values (1,3,'2016-02-05',null);
+insert into cr_address_person (address_id,person_id,start_date,end_date) values (1,4,'2018-12-11',null);
 
 select temporal from cr_address_person ap
 inner join cr_person p on p.person_id = ap.person_id
 inner join cr_address a on a.address_id = ap.address_id
 where
-p.sur_name = ? and p.given_name=? and p.patronymic=? and p.date_of_birth=?
+current_date >= ap.start_date and (current_date <= ap.end_date or ap.end_date is null )
+and p.sur_name = ? and p.given_name=? and p.patronymic=? and p.date_of_birth=?
 and a.street_code=? and a.building=? and a.extension=? and a.apartment=?;
 
 -- select temporal, upper(p.sur_name),upper('Васильев' collate "en_US.UTF-8") from cr_address_person ap
