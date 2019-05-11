@@ -1,13 +1,14 @@
-package com.network_project.net;
+package net;
+
+import net.greet.EveningGreet;
+import net.greet.MorningGreet;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Handler;
 
 public class Server {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -43,6 +44,7 @@ public class Server {
         return result;
     }
 }
+
 class SimpleServer extends Thread {
 
     private Socket client;

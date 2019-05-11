@@ -10,7 +10,7 @@ import java.net.Socket;
 public class SimpleSocket {
     @Test
     public void simpleSocket () throws IOException {
-        Socket socket = new Socket("java-course.ru",80);
+        Socket socket = new Socket("localhost",8080);
 
         InputStream is = socket.getInputStream();
         OutputStream os = socket.getOutputStream();

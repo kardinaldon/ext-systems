@@ -1,8 +1,7 @@
-package com.network_project.net;
+package net;
 
 import java.io.*;
 import java.net.Socket;
-import java.time.LocalDateTime;
 
 public class Client {
     public static void main(String[] args) throws IOException {
@@ -14,6 +13,7 @@ public class Client {
     }
 
 }
+
 class SimpleClient extends Thread {
     private final static String[] COMMAND = {"HELLO","MORNING","DAY","EVENING"};
     private int cmdNumber;
