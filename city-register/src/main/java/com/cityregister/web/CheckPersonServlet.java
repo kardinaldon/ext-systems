@@ -1,8 +1,11 @@
 package com.cityregister.web;
 
 import com.cityregister.dao.PersonCheckDao;
+import com.cityregister.dao.PoolConnectionBuilder;
 import com.cityregister.domain.PersonRequest;
 import com.cityregister.domain.PersonResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +18,15 @@ import java.time.LocalDate;
 
 @WebServlet (name = "CheckPersonServlet", urlPatterns = "/checkPerson")
 public class CheckPersonServlet extends HttpServlet {
+    private PersonCheckDao dao;
+    private static final Logger logger = LoggerFactory.getLogger(CheckPersonServlet.class);
+
+    @Override
+    public void init() throws ServletException {
+        logger.info("servlet created");
+        dao= new PersonCheckDao();
+        dao.setConnectionBuilder(new PoolConnectionBuilder());
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +46,6 @@ public class CheckPersonServlet extends HttpServlet {
 
 
         try {
-            PersonCheckDao dao = new PersonCheckDao();
             PersonResponse ps = dao.checkPerson(pr);
             if (ps.isRegister()) {
                 resp.getWriter().write("Register");
