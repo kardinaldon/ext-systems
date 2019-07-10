@@ -1,7 +1,7 @@
 package com.example.firstframework;
 
 public abstract class SceneFW {
-    private CoreFW coreFW;
+    public CoreFW coreFW;
     public int sceneWidth;
     public int sceneHeight;
     public GraphicsFW graphicsFW;

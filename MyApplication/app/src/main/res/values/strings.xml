@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Space flight</string>
+    <string name="txt_mainMeny_nameGame">Космический полёт</string>
+    <string name="txt_mainMeny_newGame">Новая игра</string>
+    <string name="txt_mainMeny_settings">Настройки</string>
+    <string name="txt_mainMeny_results">Лучший результат</string>
+    <string name="txt_mainMeny_exitGame">Выход из игры</string>
 </resources>

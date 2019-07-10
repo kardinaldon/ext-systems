@@ -16,6 +16,7 @@ public class CoreFW extends AppCompatActivity {
 
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
+    private TouchListenerFw touchListenerFw;
 
     private Display display;
     private Point sizeDisplay;
@@ -31,18 +32,20 @@ public class CoreFW extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //запрещено уходить в спящий режим пока запущено приложение + в манифесте
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        //
+
+
         sizeDisplay = new Point();
         display = getWindowManager().getDefaultDisplay();
         display.getSize(sizeDisplay);
+
         frameBuffer = Bitmap.createBitmap((int)FRAME_BUFFER_WIDTH,(int)FRAME_BUFFER_HEIGHT,Bitmap.Config.ARGB_8888);
         sceneWidth = FRAME_BUFFER_WIDTH/sizeDisplay.x;
         sceneHeight = FRAME_BUFFER_HEIGHT/sizeDisplay.y;
 
         loopFW = new LoopFW(this,frameBuffer);
         graphicsFW = new GraphicsFW(getAssets(),frameBuffer);
+        touchListenerFw = new TouchListenerFw(loopFW,sceneWidth,sceneHeight);
 
         sceneFW = getStartScene();
 
@@ -75,6 +78,10 @@ public class CoreFW extends AppCompatActivity {
         return  graphicsFW;
     }
 
+    public TouchListenerFw getTouchListenerFw () {
+        return touchListenerFw;
+    }
+
     public void setScene (SceneFW scene) {
         if (scene==null) {
             throw new IllegalArgumentException("Failed to load scene");
@@ -83,7 +90,7 @@ public class CoreFW extends AppCompatActivity {
         this.sceneFW.dispose();
         sceneFW.resume();
         sceneFW.update();
-        this.sceneFW = sceneFW;
+        this.sceneFW = scene;
     }
 
     public SceneFW getCurrentScene () {
