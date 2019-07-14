@@ -24,12 +24,12 @@ import java.util.UUID;
 
 public class TestData {
 
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/electronics_store";
+    /*private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/electronics_store";
     private static final String JDBC_USERNAME = "postgres";
     private static final String JDBC_PASSWORD = "123456789";
 
-    private static final String IMG_PATH = "external/test-data/";
-    private static final String MEDIA_PATH = "src/main/webapp/media/";
+    private static final String IMG_PATH = "src/main/external/test-data";
+    private static final String MEDIA_PATH = "media";
 
     private static final boolean useImageLinkInsteadOfCopy = true;
 
@@ -442,5 +442,5 @@ public class TestData {
             this.name = name;
             this.imageLink = imageLink;
         }
-    }
+    }*/
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class ShoppingCart implements Serializable {
 
+    private static final long serialVersionUID = -6257822254859905816L;
     private Map<Integer, ShoppingCartItem> products = new HashMap<>();
     private int totalCount = 0;
 

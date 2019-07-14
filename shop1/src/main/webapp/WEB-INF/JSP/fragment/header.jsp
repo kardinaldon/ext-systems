@@ -4,9 +4,9 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ishopNav" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/products">IShop</a>
@@ -18,8 +18,8 @@
 						<i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping cart (<span class="total-count">0</span>)<span class="caret"></span>
 					</a>
 					<div class="dropdown-menu shopping-cart-desc">
-						Total count: <span class="total-count">0</span><br> 
-						Total cost: <span class="total-cost">0</span><br> 
+						Total count: <span class="total-count">0</span><br>
+						Total cost: <span class="total-cost">0</span><br>
 						<a href="/shopping-cart" class="btn btn-primary btn-block">View cart</a>
 					</div>
 				</li>
