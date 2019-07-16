@@ -33,10 +33,6 @@ public class Category extends AbstractEntity <Integer> {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", productCount=" + productCount +
-                "} " + super.toString();
+        return String.format("Category [id=%s, name=%s, url=%s, productCount=%s]", getId(), name, url, productCount);
     }
 }

@@ -3,7 +3,7 @@ package entity;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class Product extends AbstractEntity <BigInteger> {
+public class Product extends AbstractEntity <Integer> {
 
     private static final long serialVersionUID = 3828547333872708707L;
     private String name;

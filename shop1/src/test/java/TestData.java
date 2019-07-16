@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class TestData {
 
-    /*private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/electronics_store";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/electronics_store";
     private static final String JDBC_USERNAME = "postgres";
     private static final String JDBC_PASSWORD = "123456789";
 
@@ -442,5 +442,5 @@ public class TestData {
             this.name = name;
             this.imageLink = imageLink;
         }
-    }*/
+    }
 }

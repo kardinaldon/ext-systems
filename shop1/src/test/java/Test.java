@@ -13,15 +13,12 @@ public class Test {
             col.add(String.valueOf(str.readLine()));
             System.out.println("Enter next");
             col.add(String.valueOf(str.readLine()));
-            col.forEach(x -> System.out.println(x));
+            col.forEach(System.out::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
 //        for (String result : col) {
 //            System.out.println(result);
 //        }
-
     }
-
-
 }

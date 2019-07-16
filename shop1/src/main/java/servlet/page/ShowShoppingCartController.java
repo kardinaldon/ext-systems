@@ -2,6 +2,7 @@ package servlet.page;
 
 import servlet.AbstractController;
 import utils.RoutingUtils;
+import utils.SessionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,10 @@ public class ShowShoppingCartController extends AbstractController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RoutingUtils.forwardToPage("shopping-cart.jsp", req, resp);
+        if (SessionUtils.isCurrentShoppingCartCreated(req)) {
+            RoutingUtils.forwardToPage("shopping-cart.jsp", req, resp);
+        } else {
+            RoutingUtils.redirect("/products", req, resp);
+        }
     }
 }

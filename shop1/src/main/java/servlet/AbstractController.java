@@ -1,8 +1,12 @@
 package servlet;
 
+import form.ProductForm;
 import form.SearchForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import service.OrderService;
 import service.ProductService;
+import service.SocialService;
 import service.impl.ServiceManager;
 
 import javax.servlet.ServletException;
@@ -13,13 +17,16 @@ public abstract class AbstractController extends HttpServlet {
 
 
     private static final long serialVersionUID = -813710123987407140L;
+    protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private ProductService productService;
     private OrderService orderService;
+    private SocialService socialService;
 
     @Override
     public final void init() throws ServletException {
         productService = ServiceManager.getInstance(getServletContext()).getProductService();
-        orderService = ServiceManager.getInstance(getServletContext()).getOrderService();
+        orderService =  ServiceManager.getInstance(getServletContext()).getOrderService();
+        socialService = ServiceManager.getInstance(getServletContext()).getSocialService();
     }
 
     public final ProductService getProductService() {
@@ -28,6 +35,10 @@ public abstract class AbstractController extends HttpServlet {
 
     public final OrderService getOrderService() {
         return orderService;
+    }
+
+    public final SocialService getSocialService() {
+        return socialService;
     }
 
     public final int getPageCount(int totalCount, int itemsPerPage) {
@@ -51,5 +62,11 @@ public abstract class AbstractController extends HttpServlet {
                 request.getParameter("query"),
                 request.getParameterValues("category"),
                 request.getParameterValues("producer"));
+    }
+
+    public final ProductForm createProductForm(HttpServletRequest request) {
+        return new ProductForm(
+                Integer.parseInt(request.getParameter("idProduct")),
+                Integer.parseInt(request.getParameter("count")));
     }
 }

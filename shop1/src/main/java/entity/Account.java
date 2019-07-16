@@ -1,11 +1,22 @@
 package entity;
 
-public class Account extends AbstractEntity <Integer> {
+import model.CurrentAccount;
 
-    private static final long serialVersionUID = 6419468689348295388L;
+public class Account extends AbstractEntity<Integer> implements CurrentAccount {
 
+    private static final long serialVersionUID = -2959969658052706111L;
     private String name;
     private String email;
+
+    public Account() {
+        super();
+    }
+
+    public Account(String name, String email) {
+        super();
+        this.name = name;
+        this.email = email;
+    }
 
     public String getName() {
         return name;
@@ -22,4 +33,15 @@ public class Account extends AbstractEntity <Integer> {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String getDescription() {
+        return name + "("+email+")";
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Account [id=%s, name=%s, email=%s]", getId(), name, email);
+    }
 }
+

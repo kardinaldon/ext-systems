@@ -50,4 +50,9 @@ public class Orders extends AbstractEntity <BigInteger> {
         return cost;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Order [id=%s, idAccount=%s, items=%s, created=%s]", getId(), idAccount, items, created);
+    }
+
 }

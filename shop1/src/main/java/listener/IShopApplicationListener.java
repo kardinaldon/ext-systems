@@ -30,6 +30,6 @@ public class IShopApplicationListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         serviceManager.close();
-        LOGGER.info("Web application 'ishop' destroyed");
+        LOGGER.info("Web application destroyed");
     }
 }

@@ -14,7 +14,6 @@ import java.io.Writer;
 
 @WebFilter(filterName="TrimResponseFilter")
 public class TrimResponseFilter extends AbstractFilter {
-
     @Override
     public void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
@@ -22,19 +21,16 @@ public class TrimResponseFilter extends AbstractFilter {
         chain.doFilter(req, response);
         response.complete();
     }
-
     private static class TrimResponse extends HttpServletResponseWrapper {
         private TrimProxyWriter trimProxyWriter;
         private TrimResponse(HttpServletResponse response) throws IOException {
             super(response);
             trimProxyWriter = new TrimProxyWriter(response.getWriter());
         }
-
         @Override
         public PrintWriter getWriter() throws IOException {
             return new PrintWriter(trimProxyWriter);
         }
-
         @Override
         public ServletOutputStream getOutputStream() throws IOException {
             return new ServletOutputStream(){
@@ -51,13 +47,11 @@ public class TrimResponseFilter extends AbstractFilter {
                 }
             };
         }
-
         private void complete() throws IOException {
             setContentLength(trimProxyWriter.getLength());
             trimProxyWriter.complete();
         }
     }
-
     private static class TrimProxyWriter extends Writer {
         private final Writer wr;
         private int length;
