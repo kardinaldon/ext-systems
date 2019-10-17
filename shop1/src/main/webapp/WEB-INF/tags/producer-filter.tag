@@ -10,7 +10,7 @@
     <c:forEach var="producer" items="${producers }">
         <div class="form-group">
             <div class="checkbox">
-                <label><input type="checkbox" name="producer" value="${producer.id }" class="search-option">
+                <label><input type="checkbox" name="producer" value="${producer.id }" ${searchForm.producers.contains(producer.id) ? 'checked' : '' } class="search-option">
                         ${producer.name }(${producer.productCount })
                 </label>
             </div>

@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class Orders extends AbstractEntity <BigInteger> {
+public class Orders extends AbstractEntity <Long> {
 
     private static final long serialVersionUID = 1591625246237957625L;
     private Integer idAccount;
@@ -14,6 +14,12 @@ public class Orders extends AbstractEntity <BigInteger> {
 
     public Orders() {
 
+    }
+
+    public Orders(Integer idAccount, Timestamp created) {
+        super();
+        this.idAccount = idAccount;
+        this.created = created;
     }
 
     public Integer getIdAccount() {
@@ -54,5 +60,4 @@ public class Orders extends AbstractEntity <BigInteger> {
     public String toString() {
         return String.format("Order [id=%s, idAccount=%s, items=%s, created=%s]", getId(), idAccount, items, created);
     }
-
 }

@@ -2,7 +2,7 @@ package entity;
 
 import java.math.BigInteger;
 
-public class OrderItem extends AbstractEntity <BigInteger> {
+public class OrderItem extends AbstractEntity <Long> {
 
     private static final long serialVersionUID = -7525792084964190936L;
     private Long idOrder;

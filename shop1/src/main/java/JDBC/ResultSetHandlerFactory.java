@@ -1,9 +1,6 @@
 package JDBC;
 
-import entity.Account;
-import entity.Category;
-import entity.Producer;
-import entity.Product;
+import entity.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,6 +55,30 @@ public final class ResultSetHandlerFactory {
             a.setEmail(rs.getString("email"));
             a.setName(rs.getString("name"));
             return a;
+        }
+    };
+
+    public final static ResultSetHandler<OrderItem> ORDER_ITEM_RESULT_SET_HANDLER = new ResultSetHandler<OrderItem>() {
+        @Override
+        public OrderItem handle(ResultSet rs) throws SQLException {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setId(rs.getLong("oid"));
+            orderItem.setCount(rs.getInt("count"));
+            orderItem.setIdOrder(rs.getLong("id_order"));
+            Product p = PRODUCT_RESULT_SET_HANDLER.handle(rs);
+            orderItem.setProduct(p);
+            return orderItem;
+        }
+    };
+
+    public final static ResultSetHandler<Orders> ORDER_RESULT_SET_HANDLER = new ResultSetHandler<Orders>() {
+        @Override
+        public Orders handle(ResultSet rs) throws SQLException {
+            Orders o = new Orders();
+            o.setId(rs.getLong("id"));
+            o.setCreated(rs.getTimestamp("created"));
+            o.setIdAccount(rs.getInt("id_account"));
+            return o;
         }
     };
 

@@ -10,12 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SessionUtils {
     public static ShoppingCart getCurrentShoppingCart(HttpServletRequest req) {
-        ShoppingCart shoppingCart = (ShoppingCart) req.getSession().getAttribute(Constants.CURRENT_SHOPPING_CART);
-        if (shoppingCart == null) {
-            shoppingCart = new ShoppingCart();
-            setCurrentShoppingCart(req, shoppingCart);
-        }
-        return shoppingCart;
+        return (ShoppingCart) req.getSession().getAttribute(Constants.CURRENT_SHOPPING_CART);
     }
 
     public static boolean isCurrentShoppingCartCreated(HttpServletRequest req) {
