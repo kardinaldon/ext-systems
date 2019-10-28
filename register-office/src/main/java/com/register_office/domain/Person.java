@@ -1,13 +1,36 @@
 package com.register_office.domain;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 
-@Table (name = "ro_person")
+@Table(name = "ro_person")
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "sex", discriminatorType = DiscriminatorType.INTEGER)
+
+@NamedQueries({
+        @NamedQuery(name = "Person.findPersons",
+                query = "SELECT p FROM Person p " +
+                        "LEFT JOIN FETCH p.passports ps " +
+                        "LEFT JOIN FETCH p.birthCertificate bs " +
+                        "WHERE p.personId = :personId")
+})
 public class Person {
 
     @Id
