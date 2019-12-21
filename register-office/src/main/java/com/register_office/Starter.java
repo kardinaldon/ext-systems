@@ -11,7 +11,7 @@ public class Starter {
                 new String[]{"springContext.xml"}
         );
 //        MarriageController controller = applicationContext.getBean(MarriageController.class);
-        MarriageController controller = applicationContext.getBean("controller", MarriageController.class);
-        controller.findMarriageCertificate(new MarriageRequest());
+//        MarriageController controller = applicationContext.getBean("controller", MarriageController.class);
+//        controller.findMarriageCertificate(new MarriageRequest());
     }
 }

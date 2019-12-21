@@ -9,14 +9,14 @@ public class PersonDAOTest {
 
     @Test
     public void findPersons() {
-        PersonDAO dao = new PersonDAO();
-        List<Person> persons = dao.findPersons();
-
-        persons.forEach(p -> {
-            System.out.println("Name:" + p.getFirstName());
-            System.out.println("Class foe sex:" + p.getClass().getName());
-            System.out.println("Passports:" + p.getPassports().size());
-            System.out.println("Birth:" + p.getBirthCertificate());
+//        PersonDAO dao = new PersonDAO();
+//        List<Person> persons = dao.findPersons();
+//
+//        persons.forEach(p -> {
+//            System.out.println("Name:" + p.getFirstName());
+//            System.out.println("Class foe sex:" + p.getClass().getName());
+//            System.out.println("Passports:" + p.getPassports().size());
+//            System.out.println("Birth:" + p.getBirthCertificate());
 //            if (p instanceof PersonMale) {
 //                System.out.println("Birth Cert:" + ((PersonMale)p).getBirthCertificates().size() );
 //                System.out.println("Marriage Cert:" + ((PersonMale)p).getMarriageCertificates().size() );
@@ -24,6 +24,6 @@ public class PersonDAOTest {
 //                System.out.println("Birth Cert:" + ((PersonFemale)p).getBirthCertificates().size() );
 //                System.out.println("Marriage Cert:" + ((PersonFemale)p).getMarriageCertificates().size() );
 //            }
-        });
+//        });
     }
 }

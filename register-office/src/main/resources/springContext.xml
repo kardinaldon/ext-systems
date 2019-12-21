@@ -32,7 +32,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>com.register_office.dao</value>
+                <value>com.register_office.domain</value>
             </list>
         </property>
         <property name="jpaVendorAdapter">
@@ -51,15 +51,3 @@
     </bean>
 
 </beans>
-<!--    -->
-<!--    <bean id="dao" class="com.register_office.dao.MarriageDAO">-->
-<!--        <property name="test" value="SIMPLE_NEW"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="manager" class="com.register_office.business.MarriageManager">-->
-<!--        <property name="marriageDAO" ref="dao"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="controller" class="com.register_office.rest.MarriageController">-->
-<!--        <property name="marriageManager" ref="manager"/>-->
-<!--    </bean>-->
