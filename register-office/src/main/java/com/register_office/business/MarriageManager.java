@@ -4,6 +4,7 @@ import com.register_office.dao.MarriageDAO;
 import com.register_office.dao.PersonDAO;
 import com.register_office.domain.MarriageCertificate;
 import com.register_office.domain.Person;
+import com.register_office.domain.PersonFemale;
 import com.register_office.domain.PersonMale;
 import com.register_office.view.MarriageRequest;
 import com.register_office.view.MarriageResponse;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service("marriageService")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -32,14 +34,40 @@ public class MarriageManager {
     @Transactional
     public MarriageResponse findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("MANAGER findMarriageCertificate called");
-        MarriageCertificate cert = marriageDAO.findMarriageCertificate(request);
 
-        Person m = new PersonMale();
-        m.setFirstName("1");
-        m.setLastName("2");
-        m.setPatronymic("3");m.setDateOfBirth(LocalDate.of(1991,3,2));
-        personDAO.addPerson(m);
+
+        personDAO.addPerson(getPerson(1));
+        personDAO.addPerson(getPerson(2));
+
+        MarriageCertificate marriageCertificate = getMarriageCertificate();
+
+        marriageDAO.saveAndFlush(marriageCertificate);
 
         return new MarriageResponse();
+    }
+
+    private MarriageCertificate getMarriageCertificate () {
+        MarriageCertificate mc = new MarriageCertificate();
+        mc.setIssueDate(LocalDate.now());
+        mc.setNumber("112323213");
+        mc.setActive(true);
+
+        List<Person> persons = personDAO.findPersons();
+        for (Person person : persons) {
+            if (person instanceof PersonMale) {
+                mc.setHusband((PersonMale)person);
+            } else {
+                mc.setWife((PersonFemale) person);
+            }
+        }
+        return mc;
+    }
+
+    private Person getPerson (int sex) {
+        Person p = sex == 1 ? new PersonMale() : new PersonFemale();
+        p.setFirstName("1_" + sex);
+        p.setLastName("2_" + sex);
+        p.setPatronymic("3_" + sex);p.setDateOfBirth(LocalDate.of(1991,3,2));
+        return p;
     }
 }
