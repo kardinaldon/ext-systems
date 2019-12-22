@@ -1,4 +1,4 @@
-package domain;
+package stud.domain;
 
 public enum StudentForm
 {

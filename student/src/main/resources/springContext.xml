@@ -13,9 +13,9 @@
         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-    <context:component-scan base-package="student"/>
+    <context:component-scan base-package="stud"/>
 
-    <jpa:repositories base-package="student"
+    <jpa:repositories base-package="stud"
                       entity-manager-factory-ref="emf"
                       transaction-manager-ref="txManager"/>
 
@@ -32,7 +32,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>student.domain</value>
+                <value>stud.domain</value>
             </list>
         </property>
         <property name="jpaVendorAdapter">
@@ -42,7 +42,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">none</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
